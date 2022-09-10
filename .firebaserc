@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cursalab-ba977": {
+      "hosting": {
+        "reto": [
+          "cursalab-ba977"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cursalab-ba977"
+  }
+}
