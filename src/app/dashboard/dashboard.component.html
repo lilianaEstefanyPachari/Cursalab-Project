@@ -1,1 +1,47 @@
-<p>dashboard works!</p>
+<div class="w-full h-screen flex flex-row bg-[#1a1c24] text-[#adaeb3]">
+  <app-side-nav class="w-[7%]"></app-side-nav>
+  <main class="w-[60%] mx-11 my-4 flex flex-col">
+    <section class="h-[5%]">
+      <p class="text-[#e9eaed]">Courses/Design/{{ courseTitle }}</p>
+    </section>
+    <section class="flex flex-row w-full justify-between h-[10%]">
+      <div class="w-[60%]">
+        <h1 class="text-[#e9eaed]">{{ currentChapterData.title }}</h1>
+        <p>Natalie Storm: Design Department</p>
+      </div>
+      <div class="bg-slate-500 flex flex-row justify-end w-[40%]">
+        <p class="mx-2 py-2">
+          Chapter {{ currentChapterData.chapter }}/{{ courseChapters.length }}
+        </p>
+        <div class="mx-3">
+          <button (click)="setBackChapter()" class="bg-amber-900 mx-1 p-2">
+            anterior
+          </button>
+          <button (click)="setNextChapter()" class="bg-lime-700 mx-1 p-2">
+            siguiente
+          </button>
+        </div>
+      </div>
+    </section>
+    <section class="w-full h-[55%] bg-neutral-600">
+      <app-video-player [ChapterData]="currentChapterData"></app-video-player>
+    </section>
+    <section class="w-full h-[30%] flex">
+      <div class="w-4/6">
+        <div class="flex justify-between w-2/4">
+          <p class="border-b-2 border-[#ffffff]">Notes</p>
+          <p>Resources</p>
+          <p>Quiz</p>
+        </div>
+        <div class="w-full pr-6">
+          <p>{{ courseInfo }}</p>
+        </div>
+      </div>
+
+      <div class="w-2/6">
+        <div>Card con info de instructor component</div>
+      </div>
+    </section>
+  </main>
+  <app-side-nav class="w-[33%]"></app-side-nav>
+</div>
