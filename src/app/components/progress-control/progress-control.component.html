@@ -1,6 +1,9 @@
-<section *ngFor="let chapter of totalChaptersData" class="w-full">
-  <div class="flex h-9 cursor-pointer" (click)="goToChapter(chapter.chapter)">
-    <div class="uploader-status">
+<section *ngFor="let chapter of totalChaptersData" class="w-full mx-8">
+  <div
+    class="flex h-9 cursor-pointer mb-6"
+    (click)="goToChapter(chapter.chapter)"
+  >
+    <div class="uploader-status mr-4">
       <mat-progress-spinner
         *ngIf="!chapter.completed && ChapterData.url === chapter.url"
         [mode]="mode"
@@ -34,6 +37,7 @@
       </p>
     </div>
     <p
+      class="text-base"
       [ngClass]="{
         'line-through text-[#53a69a]':
           totalChaptersData[chapter.chapter - 1].completed
@@ -41,7 +45,8 @@
     >
       {{ chapter.title }}
     </p>
-    <div>
+
+    <div class="self-end ml-8">
       <span
         class="material-icons"
         *ngIf="chapter.completed || ChapterData.url === chapter.url"
@@ -49,7 +54,7 @@
         arrow_forward_ios
       </span>
     </div>
-    <div>
+    <div class="self-end ml-8">
       <span
         class="material-icons"
         *ngIf="!chapter.completed && ChapterData.url !== chapter.url"
