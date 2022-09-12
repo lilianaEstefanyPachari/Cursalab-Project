@@ -1,0 +1,7 @@
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #56b5a5;
+}
+
+.mat-spinner-color::ng-deep circle{
+    stroke: #5a5a64 !important;
+    }

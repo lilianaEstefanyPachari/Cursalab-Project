@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { CourseDataService } from './../services/course-data.service';
 import { ChapterData } from './../models/course-data.model';
@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   currentChapterData!: ChapterData;
   controlChapter: number = 1;
   courseInfo: string = '';
+  percentageAdvance: number = 0;
 
   constructor(private courseDataService: CourseDataService) {}
 
@@ -24,35 +25,35 @@ export class DashboardComponent implements OnInit {
   async getCurse(docId: string) {
     try {
       const courseData = await this.courseDataService.getCourseData(docId);
-      // console.log(courseData);
       this.courseTitle = courseData.title;
     } catch (error) {
       throw new Error('Something went wrong');
     }
   }
-  //el objeto con data del current chapter
+
   getCurrentChapter(courseId: string, chapterNumber: number) {
     this.courseDataService.getAllChaptersData(courseId).subscribe({
       next: (totalChapters) => {
-        // console.log('todos los capitulos: ', res);
-        this.courseChapters = totalChapters;
+        this.courseChapters = totalChapters.sort(
+          (a, b) => a.chapter - b.chapter
+        );
         const data: ChapterData[] = totalChapters.filter(
           (e) => e.chapter === chapterNumber
         );
         this.currentChapterData = { ...data[0] };
         this.courseInfo = this.currentChapterData.notes;
-        // console.log(this.currentChapter);
       },
       error: (error) => {
         throw new Error(error);
-        // console.log('Error: ', error);
       },
     });
   }
 
   setNextChapter() {
     if (this.controlChapter < this.courseChapters.length) {
-      this.controlChapter++;
+      if (this.currentChapterData.completed) {
+        this.controlChapter++;
+      }
     }
     this.getCurrentChapter('68H8A62KBJD5wxOuVeGv', this.controlChapter);
   }
@@ -63,17 +64,17 @@ export class DashboardComponent implements OnInit {
     this.getCurrentChapter('68H8A62KBJD5wxOuVeGv', this.controlChapter);
   }
 
-  // setCourseInfo(displayInfo: string) {
-  //   switch (displayInfo) {
-  //     case 'notes':
-  //       this.courseInfo = this.currentChapterData.notes;
-  //       break;
-  //     case 'quiz':
-  //       this.courseInfo = this.currentChapterData.quiz;
-  //       break;
-  //     case 'resources':
-  //       this.courseInfo = this.currentChapterData.resources;
-  //       break;
-  //   }
-  // }
+  getAdvance(percentage: number) {
+    this.percentageAdvance = percentage;
+  }
+
+  setChapter(chapter: number) {
+    if (chapter < 2) {
+      this.controlChapter = 1;
+      this.getCurrentChapter('68H8A62KBJD5wxOuVeGv', this.controlChapter);
+    } else if (chapter >= 2 && this.courseChapters[chapter - 2].completed) {
+      this.controlChapter = chapter;
+      this.getCurrentChapter('68H8A62KBJD5wxOuVeGv', this.controlChapter);
+    }
+  }
 }

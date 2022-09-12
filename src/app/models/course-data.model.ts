@@ -4,11 +4,13 @@ export interface CourseData {
 }
 
 export interface ChapterData {
-  id?: string;
+  id: string;
   chapter: number;
   title: string;
   url: string;
   notes: string;
   quiz: string;
   resources: string;
+  advance: number;
+  completed: boolean;
 }
