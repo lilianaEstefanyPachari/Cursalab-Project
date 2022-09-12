@@ -1,0 +1,18 @@
+/* #container button{
+    padding: 15px;
+    background: rgb(152, 206, 91);
+    color: rgb(25, 24, 24);
+  }
+  #container .progress-bar {
+    margin-top: 15px;
+    width: 100%;
+    border: 2px solid black;
+  } */
+ #span{
+      height: 5px;
+      display:block;
+      background: red;
+      width: 0%;
+      transition: width 0.25s ease;
+  }
+  
