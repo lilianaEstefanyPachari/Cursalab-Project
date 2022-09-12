@@ -1,29 +1,35 @@
 <div class="w-full h-screen flex flex-row bg-[#1a1c24] text-[#adaeb3]">
-  <app-side-nav class="w-[7%]"></app-side-nav>
-  <main class="w-[60%] mx-11 my-4 flex flex-col">
+  <app-side-nav class="w-[8%]"></app-side-nav>
+  <main class="w-[52%] mx-14 my-4 flex flex-col">
     <section class="h-[5%]">
-      <p class="text-[#e9eaed]">Courses/Design/{{ courseTitle }}</p>
+      <p class="text-[#adaeb3]">Courses/Design/{{ courseTitle }}</p>
     </section>
     <section class="flex flex-row w-full justify-between h-[10%]">
       <div class="w-[60%]">
-        <h1 class="text-[#e9eaed]">{{ currentChapterData.title }}</h1>
-        <p>Natalie Storm: Design Department</p>
+        <h1 class="text-[#e9eaed] p-0 m-0">{{ currentChapterData.title }}</h1>
+        <p class="p-0 m-0">Natalie Storm: Design Department</p>
       </div>
-      <div class="bg-slate-500 flex flex-row justify-end w-[40%]">
-        <p class="mx-2 py-2">
+      <div class="flex flex-row justify-end w-[40%]">
+        <p class="mx-2 py-3 text-[#adaeb3]">
           Chapter {{ currentChapterData.chapter }}/{{ courseChapters.length }}
         </p>
-        <div class="mx-3">
-          <button (click)="setBackChapter()" class="bg-amber-900 mx-1 p-2">
-            anterior
+        <div class="mx-3 pt-2">
+          <button
+            (click)="setBackChapter()"
+            class="bg-[#292931] px-2 rounded-l-3xl"
+          >
+            <span class="material-icons"> chevron_left </span>
           </button>
-          <button (click)="setNextChapter()" class="bg-lime-700 mx-1 p-2">
-            siguiente
+          <button
+            (click)="setNextChapter()"
+            class="bg-[#767bfc] px-2 rounded-r-3xl"
+          >
+            <span class="material-icons"> navigate_next </span>
           </button>
         </div>
       </div>
     </section>
-    <section class="w-full h-[55%] bg-neutral-600">
+    <section class="w-full h-[auto]">
       <app-video-player
         [ChapterData]="currentChapterData"
         (percentageToParent)="getAdvance($any($event))"
@@ -42,11 +48,32 @@
       </div>
 
       <div class="w-2/6">
-        <div>Card con info de instructor component</div>
+        <div
+          class="py-3 px-3 max-w-sm mx-auto bg-[#31343d] rounded-md shadow-lg sm:py-3 sm:flex sm:flex-col sm:items-center sm:space-y-0 sm:space-x-3"
+        >
+          <h3 class="text-[#dcdde2] self-start">About Instructor</h3>
+
+          <div
+            class="text-centers sm:text-left flex flex-row justify-around w-full"
+          >
+            <span class="material-icons p-2 mx-2 text-4xl">
+              account_circle
+            </span>
+            <div class="space-y-0.5 w-full">
+              <p class="text-[#dcdde2]">Natalie Storm</p>
+              <p class="text-slate-500 font-medium text-[#7d7d87]">
+                Design Department
+              </p>
+            </div>
+          </div>
+          <p class="text-slate-500 font-medium text-[#7d7d87]">
+            Lorem Ipsum is simply dummy text of the printing.
+          </p>
+        </div>
       </div>
     </section>
   </main>
-  <section class="w-[33%] flex flex-col">
+  <section class="w-[40%] flex flex-col">
     <app-course-index
       [percentage]="percentageAdvance"
       [chapterNum]="controlChapter"
