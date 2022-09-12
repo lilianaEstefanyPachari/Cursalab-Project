@@ -1,0 +1,35 @@
+<aside class="mx-4">
+  <h2>Masterclass: Designing for Web</h2>
+  <section>
+    <p>{{ chaptersCompleted }}/5 completed</p>
+    <div class="flex flex-row w-full">
+      <div
+        class="w-1/5 bg-[#2f4b4f] h-1 ml-1"
+        *ngFor="let chapter of totalChaptersData"
+      >
+        <div
+          *ngIf="!chapter.completed && chapterData.url === chapter.url"
+          class="bg-[#45cbb7] h-1"
+          [style.width]="percentage + '%'"
+        ></div>
+        <div
+          *ngIf="chapter.completed"
+          class="bg-[#45cbb7] h-1"
+          style="width: 100%"
+        ></div>
+        <div
+          *ngIf="!chapter.completed && chapterData.url !== chapter.url"
+          class="bg-[#2f4b4f] h-1"
+          style="width: 100%"
+        ></div>
+      </div>
+    </div>
+  </section>
+</aside>
+
+<ng-template #fullBar>
+  <div class="bg-blue-600 h-1" [style.width]="chapterData.advance + '%'"></div>
+</ng-template>
+<!-- <ng-template #secondBar>
+    <div class="bg-blue-600 h-1" [style.width]="chapterData.advance + '%'"></div>
+  </ng-template> -->

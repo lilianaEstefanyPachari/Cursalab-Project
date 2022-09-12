@@ -1,7 +1,7 @@
 import { ChapterData } from './../../models/course-data.model';
 import { CourseData } from '../../models/course-data.model';
 import { CourseDataService } from '../../services/course-data.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-video-player',
@@ -9,19 +9,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./video-player.component.css'],
 })
 export class VideoPlayerComponent implements OnInit {
-  public videoUrl: string = '';
   @Input() ChapterData!: ChapterData;
 
   video!: HTMLVideoElement;
   videoPlaying: boolean = false;
   percentage: number = 0;
+  @Output() percentageToParent = new EventEmitter<number>();
 
   constructor(private courseDataService: CourseDataService) {}
 
   ngOnInit(): void {
     this.video = document.getElementsByTagName('video')[0];
-    // this.videoUrl = this.ChapterData.url;
-    // console.log(this.ChapterData.url);
   }
 
   togglevideo() {
@@ -34,7 +32,19 @@ export class VideoPlayerComponent implements OnInit {
     }
   }
 
-  onTimeUpdate() {
+  onTimeUpdate(): void {
     this.percentage = (this.video.currentTime / this.video.duration) * 100;
+    this.percentageToParent.emit(this.percentage);
+    this.setCourseCompleted();
+  }
+
+  setCourseCompleted() {
+    if (this.percentage === 100) {
+      this.courseDataService.updateChapterAdvance(
+        '68H8A62KBJD5wxOuVeGv',
+        this.ChapterData.id,
+        true
+      );
+    }
   }
 }

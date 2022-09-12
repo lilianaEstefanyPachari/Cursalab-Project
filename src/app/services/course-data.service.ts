@@ -6,7 +6,7 @@ import {
   collection,
   getDoc,
   doc,
-  orderBy,
+  updateDoc,
 } from '@angular/fire/firestore';
 
 import { InstructorData } from './../models/instructor-data.model';
@@ -58,20 +58,14 @@ export class CourseDataService {
     return chapterData;
   }
 
-  // getCurrentChapter(
-  //   courseId: string,
-  //   chapterNumber: number
-  // ) {
-  //   return this.getAllChaptersData(courseId).subscribe({
-  //     next:(res) => {
-  //       console.log('todos los cursos: ', res);
-  //       const currentChapter= res.filter((e) => e.chapter === chapterNumber);
-  //       console.log(currentChapter);
-  //       return currentChapter;
-  //     },
-  //     error:(msg) => {
-  //       console.log('Error: ', msg);
-  //     },
-  //   });
-  // }
+  async updateChapterAdvance(
+    courseId: string,
+    idDoc: string,
+    complete: boolean
+  ) {
+    const docChapterRef = doc(this.db, `courses/${courseId}/chapters`, idDoc);
+    await updateDoc(docChapterRef, {
+      completed: complete,
+    });
+  }
 }

@@ -24,7 +24,10 @@
       </div>
     </section>
     <section class="w-full h-[55%] bg-neutral-600">
-      <app-video-player [ChapterData]="currentChapterData"></app-video-player>
+      <app-video-player
+        [ChapterData]="currentChapterData"
+        (percentageToParent)="getAdvance($any($event))"
+      ></app-video-player>
     </section>
     <section class="w-full h-[30%] flex">
       <div class="w-4/6">
@@ -43,5 +46,19 @@
       </div>
     </section>
   </main>
-  <app-side-nav class="w-[33%]"></app-side-nav>
+  <section class="w-[33%] flex flex-col">
+    <app-course-index
+      [percentage]="percentageAdvance"
+      [chapterNum]="controlChapter"
+      [chapterData]="currentChapterData"
+      [totalChaptersData]="courseChapters"
+    ></app-course-index>
+
+    <app-progress-control
+      [ChapterData]="currentChapterData"
+      [percentage]="percentageAdvance"
+      [totalChaptersData]="courseChapters"
+      (setChapter)="setChapter($event)"
+    ></app-progress-control>
+  </section>
 </div>

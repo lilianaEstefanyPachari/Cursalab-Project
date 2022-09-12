@@ -1,0 +1,61 @@
+<section *ngFor="let chapter of totalChaptersData" class="w-full">
+  <div class="flex h-9 cursor-pointer" (click)="goToChapter(chapter.chapter)">
+    <div class="uploader-status">
+      <mat-progress-spinner
+        *ngIf="!chapter.completed && ChapterData.url === chapter.url"
+        [mode]="mode"
+        [value]="percentage"
+        diameter="30"
+        strokeWidth="2"
+      >
+      </mat-progress-spinner>
+      <mat-progress-spinner
+        [ngClass]="{
+          'mat-spinner-color':
+            !chapter.completed && ChapterData.url !== chapter.url
+        }"
+        *ngIf="!chapter.completed && ChapterData.url !== chapter.url"
+        [mode]="mode"
+        value="100"
+        diameter="30"
+        strokeWidth="2"
+      >
+      </mat-progress-spinner>
+      <mat-progress-spinner
+        *ngIf="chapter.completed"
+        [mode]="mode"
+        value="100"
+        diameter="30"
+        strokeWidth="2"
+      >
+      </mat-progress-spinner>
+      <p class="relative bottom-[67%] left-[38%]">
+        {{ chapter.chapter }}
+      </p>
+    </div>
+    <p
+      [ngClass]="{
+        'line-through text-[#53a69a]':
+          totalChaptersData[chapter.chapter - 1].completed
+      }"
+    >
+      {{ chapter.title }}
+    </p>
+    <div>
+      <span
+        class="material-icons"
+        *ngIf="chapter.completed || ChapterData.url === chapter.url"
+      >
+        arrow_forward_ios
+      </span>
+    </div>
+    <div>
+      <span
+        class="material-icons"
+        *ngIf="!chapter.completed && ChapterData.url !== chapter.url"
+      >
+        lock
+      </span>
+    </div>
+  </div>
+</section>
