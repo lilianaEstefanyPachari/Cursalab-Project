@@ -1,12 +1,15 @@
-<div class="w-full h-full relative">
+<div class="w-full relative">
   <video
-    [src]="ChapterData.url"
+    [src]="ChapterData?.url"
     (timeupdate)="onTimeUpdate()"
     class="h-full w-auto bg-cover"
   >
     Your browser does not support the video tag.
   </video>
-  <div id="container" class="relative right-[-30px] bottom-24">
+  <div
+    id="container"
+    class="relative right-[-8px] lg:right-[-20px] bottom-[3.5rem] sm:bottom-[4rem]"
+  >
     <button
       class="p-2 bg-[#2d2f3b] text-white rounded-full w-[50px] h-[50px]"
       (click)="this.togglevideo()"

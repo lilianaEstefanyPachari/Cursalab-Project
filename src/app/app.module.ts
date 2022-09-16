@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { CourseIndexComponent } from './components/course-index/course-index.component';
 import { ProgressControlComponent } from './components/progress-control/progress-control.component';
+import { CommetComponent } from './components/commet/commet.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ProgressControlComponent } from './components/progress-control/progress
     VideoPlayerComponent,
     CourseIndexComponent,
     ProgressControlComponent,
+    CommetComponent,
   ],
   imports: [
     BrowserModule,

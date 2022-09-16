@@ -18,8 +18,20 @@ export class CourseIndexComponent implements OnInit {
   constructor(private courseDataService: CourseDataService) {}
 
   ngOnInit(): void {
-    this.chaptersCompleted = this.totalChaptersData.filter(
-      (e) => e.completed === true
-    ).length;
+    this.getCurrentChapter('68H8A62KBJD5wxOuVeGv', this.chapterNum);
+  }
+
+  getCurrentChapter(courseId: string, chapterNumber: number) {
+    this.courseDataService.getAllChaptersData(courseId).subscribe({
+      next: (totalChapters) => {
+        const data: ChapterData[] = totalChapters.filter(
+          (e) => e.completed === true
+        );
+        this.chaptersCompleted = data.length;
+      },
+      error: (error) => {
+        throw new Error(error);
+      },
+    });
   }
 }

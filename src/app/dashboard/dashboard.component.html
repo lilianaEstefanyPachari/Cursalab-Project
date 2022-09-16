@@ -1,89 +1,135 @@
-<div class="w-full h-screen flex flex-row bg-[#1a1c24] text-[#adaeb3]">
-  <app-side-nav class="w-[8%]"></app-side-nav>
-  <main class="w-[52%] mx-14 my-4 flex flex-col">
-    <section class="h-[5%]">
-      <p class="text-[#adaeb3]">Courses/Design/{{ courseTitle }}</p>
-    </section>
-    <section class="flex flex-row w-full justify-between h-[10%]">
-      <div class="w-[60%]">
-        <h1 class="text-[#e9eaed] p-0 m-0">{{ currentChapterData.title }}</h1>
-        <p class="p-0 m-0">Natalie Storm: Design Department</p>
-      </div>
-      <div class="flex flex-row justify-end w-[40%]">
-        <p class="mx-2 py-3 text-[#adaeb3]">
-          Chapter {{ currentChapterData.chapter }}/{{ courseChapters.length }}
+<div class="w-full lg:h-screen flex flex-row bg-[#1a1c24] text-[#acadb1]">
+  <app-side-nav
+    class="w-[10%] md:w-[8%] lg:w-[8%] md:border-r-[0.5px] md:border-[#5a5b608a]"
+  ></app-side-nav>
+  <section class="w-[90%] md:w-[91%] sm:flex">
+    <main class="w-full lg:w-[62%] px-4 lg:px-14 my-4 flex flex-col">
+      <section class="h-[5%]">
+        <p class="text-[#acadb1] text-sm md:text-[0.8rem]">
+          Courses/Design/<span class="text-[#e9eaed]">{{ courseTitle }}</span>
         </p>
-        <div class="mx-3 pt-2">
-          <button
-            (click)="setBackChapter()"
-            class="bg-[#292931] px-2 rounded-l-3xl"
+      </section>
+      <section class="flex flex-col lg:flex-row w-full justify-between h-[10%]">
+        <div class="lg:w-[60%]">
+          <h1
+            *ngIf="currentChapterData"
+            class="text-[#e9eaed] text-xl p-0 m-0 md:mb-3"
           >
-            <span class="material-icons"> chevron_left </span>
-          </button>
-          <button
-            (click)="setNextChapter()"
-            class="bg-[#767bfc] px-2 rounded-r-3xl"
-          >
-            <span class="material-icons"> navigate_next </span>
-          </button>
-        </div>
-      </div>
-    </section>
-    <section class="w-full h-[auto]">
-      <app-video-player
-        [ChapterData]="currentChapterData"
-        (percentageToParent)="getAdvance($any($event))"
-      ></app-video-player>
-    </section>
-    <section class="w-full h-[30%] flex">
-      <div class="w-4/6">
-        <div class="flex justify-between w-2/4">
-          <p class="border-b-2 border-[#ffffff]">Notes</p>
-          <p>Resources</p>
-          <p>Quiz</p>
-        </div>
-        <div class="w-full pr-6">
-          <p>{{ courseInfo }}</p>
-        </div>
-      </div>
-
-      <div class="w-2/6">
-        <div
-          class="py-3 px-3 max-w-sm mx-auto bg-[#31343d] rounded-md shadow-lg sm:py-3 sm:flex sm:flex-col sm:items-center sm:space-y-0 sm:space-x-3"
-        >
-          <h3 class="text-[#dcdde2] self-start">About Instructor</h3>
-
-          <div
-            class="text-centers sm:text-left flex flex-row justify-around w-full"
-          >
-            <span class="material-icons p-2 mx-2 text-4xl">
-              account_circle
-            </span>
-            <div class="space-y-0.5 w-full">
-              <p class="text-[#dcdde2]">Natalie Storm</p>
-              <p class="font-medium text-[#7d7d87]">Design Department</p>
-            </div>
-          </div>
-          <p class="font-medium text-[#7d7d87]">
-            Lorem Ipsum is simply dummy text of the printing.
+            {{ currentChapterData.title }}
+          </h1>
+          <p class="p-0 m-0 text-sm md:text-[0.8rem]">
+            Natalie Storm: Design Department
           </p>
         </div>
-      </div>
-    </section>
-  </main>
-  <section class="w-[40%] flex flex-col mx-2.5 my-4">
-    <app-course-index
-      [percentage]="percentageAdvance"
-      [chapterNum]="controlChapter"
-      [chapterData]="currentChapterData"
-      [totalChaptersData]="courseChapters"
-    ></app-course-index>
+        <div
+          class="flex flex-row justify-start lg:justify-end w-full lg:w-[40%]"
+        >
+          <p
+            *ngIf="courseChapters"
+            class="text-sm lg:text-base lg:mx-2 py-3 text-[#acadb1] md:text-[0.9rem]"
+          >
+            Chapter {{ currentChapterData.chapter }}/{{ courseChapters.length }}
+          </p>
+          <div class="mx-3 pt-2">
+            <button
+              (click)="setBackChapter()"
+              class="bg-[#292931] px-2 rounded-l-3xl"
+            >
+              <span class="material-icons"> chevron_left </span>
+            </button>
+            <button
+              (click)="setNextChapter()"
+              class="bg-[#767bfc] px-2 rounded-r-3xl"
+            >
+              <span class="material-icons"> navigate_next </span>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="w-full h-[auto]">
+        <app-video-player
+          [ChapterData]="currentChapterData"
+          (percentageToParent)="getAdvance($any($event))"
+        ></app-video-player>
+      </section>
+      <section
+        class="w-full h-[30%] flex flex-col lg:flex-row text-sm lg:text-base mt-[-33px]"
+      >
+        <div class="w-full lg:w-[62%]">
+          <div class="flex justify-between w-2/4">
+            <p class="border-b-2 border-[#ffffff]">Notes</p>
+            <p class="ml-4">Resources</p>
+            <p class="ml-4">Quiz</p>
+          </div>
+          <div class="w-full pr-6 text-justify sm:text-left md:text-[0.8rem]">
+            <p>{{ courseInfo }}</p>
+          </div>
+        </div>
 
-    <app-progress-control
-      [ChapterData]="currentChapterData"
-      [percentage]="percentageAdvance"
-      [totalChaptersData]="courseChapters"
-      (setChapter)="setChapter($event)"
-    ></app-progress-control>
+        <div class="mt-3 lg:w-[38%]">
+          <div
+            class="w-full py-1 px-3 max-w-sm mx-auto bg-[#5a5b6030] rounded-sm shadow-lg sm:py-1 sm:flex sm:flex-col"
+          >
+            <h3 class="text-[#dcdde2] self-start md:text-[0.9rem]">
+              About Instructor
+            </h3>
+
+            <div
+              class="text-centers sm:text-left flex flex-row justify-start lg:w-full"
+            >
+              <span class="material-icons p-2 mr-2 text-4xl">
+                account_circle
+              </span>
+              <div class="space-y-0.5 lg:w-full">
+                <p
+                  class="font-medium text-[#dcdde2] md:text-[0.8rem] textStyle"
+                >
+                  Natalie Storm
+                </p>
+                <p class="text-[#7d7d87] md:text-[0.8rem] textStyle">
+                  Design Department
+                </p>
+              </div>
+            </div>
+            <p class="md:text-[0.75rem] text-justify">
+              Natalie is a freelance designer who occassionally dabbles along
+              with graphic design.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <section
+      class="w-full lg:w-[38%] flex flex-col px-2.5 md:px-6 my-4 md:my-0 sm:bg-[#5a5b6030] md:pt-4"
+    >
+      <app-course-index
+        [percentage]="percentageAdvance"
+        [chapterNum]="controlChapter"
+        [chapterData]="currentChapterData"
+        [totalChaptersData]="courseChapters"
+      ></app-course-index>
+
+      <app-progress-control
+        [ChapterData]="currentChapterData"
+        [percentage]="percentageAdvance"
+        [totalChaptersData]="courseChapters"
+        (setChapter)="setChapter($event)"
+      ></app-progress-control>
+      <p class="text-[#dcdde2]">Discussion</p>
+      <app-commet
+        [userName]="'Robin Sherbasky'"
+        [content]="
+          'Cool stuff tutor! Im wondering where I can find the list of recommended resources'
+        "
+      ></app-commet>
+      <app-commet [userName]="'Jason Statham'"></app-commet>
+      <app-commet
+        class="ml-6 border-l-[0.5px] border-[#5a5b608a]"
+        [userName]="'Natalie Rider'"
+        [content]="
+          'Yeah sure. I have made a pdf with all the links to the resources.'
+        "
+      ></app-commet>
+    </section>
   </section>
 </div>

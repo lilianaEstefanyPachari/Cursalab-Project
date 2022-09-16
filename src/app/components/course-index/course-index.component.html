@@ -1,8 +1,10 @@
-<aside class="mx-8">
-  <h2>Masterclass: Designing for Web</h2>
+<aside class="mx-2 md:mx-1">
+  <h2 class="text-[#e9eaed] text-[16px]">Masterclass: Designing for Web</h2>
   <section>
-    <p>{{ chaptersCompleted }}/5 completed</p>
-    <div class="flex flex-row w-full mb-4">
+    <p class="text-sm md:text-[0.8rem] text-[#53a69a] mt-2 md:mt-[0.3rem]">
+      {{ chaptersCompleted }}/5 completed
+    </p>
+    <div class="flex flex-row w-full mt-4 mb-4">
       <div
         class="w-1/5 bg-[#2f4b4f] h-1 ml-1"
         *ngFor="let chapter of totalChaptersData"
@@ -30,6 +32,3 @@
 <ng-template #fullBar>
   <div class="bg-blue-600 h-1" [style.width]="chapterData.advance + '%'"></div>
 </ng-template>
-<!-- <ng-template #secondBar>
-    <div class="bg-blue-600 h-1" [style.width]="chapterData.advance + '%'"></div>
-  </ng-template> -->

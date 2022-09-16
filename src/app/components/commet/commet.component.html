@@ -1,0 +1,35 @@
+<section class="w-full py-1 px-3 mx-auto sm:py-2 sm:flex sm:flex-col mb-1.5">
+  <div
+    class="text-centers sm:text-left flex flex-row justify-start items-center lg:w-full"
+  >
+    <span class="material-icons mr-2 text-3xl"> account_circle </span>
+    <div class="space-y-0.5 lg:w-full">
+      <p class="font-medium text-[#dcdde2] md:text-[0.8rem]">{{ userName }}</p>
+    </div>
+  </div>
+  <p class="text-[0.8rem] pl-[2px] mt-1">
+    {{ content }}
+  </p>
+  <div
+    *ngIf="!content"
+    class="w-full py-1 px-2 bg-[#5a5b6030] rounded-sm flex items-center justify-start"
+  >
+    <span class="material-icons text-[#767bfc] mr-1 cursor-pointer">
+      play_circle_filled
+    </span>
+    <div
+      class="w-4/5 bg-gray-200 rounded-full h-0.5 bg-[#696b7670] cursor-pointer"
+    >
+      <div class="bg-[#767bfc] h-0.5 rounded-full" style="width: 45%"></div>
+    </div>
+    <p class="text-[0.7rem] ml-1">1:39</p>
+  </div>
+  <div class="flex items-center mt-1">
+    <span class="material-icons text-[16px] md:text-[20px] cursor-pointer">
+      reply
+    </span>
+    <p class="text-[0.7rem] ml-1 cursor-pointer">Reply</p>
+    <span class="material-icons text-[5px] ml-2"> fiber_manual_record </span>
+    <p class="text-[0.7rem] ml-1 cursor-pointer">Show 8 replies</p>
+  </div>
+</section>

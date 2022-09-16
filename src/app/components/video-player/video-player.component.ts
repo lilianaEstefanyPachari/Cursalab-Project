@@ -1,5 +1,4 @@
 import { ChapterData } from './../../models/course-data.model';
-import { CourseData } from '../../models/course-data.model';
 import { CourseDataService } from '../../services/course-data.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -9,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./video-player.component.css'],
 })
 export class VideoPlayerComponent implements OnInit {
-  @Input() ChapterData!: ChapterData;
+  @Input() ChapterData!: ChapterData | undefined;
 
   video!: HTMLVideoElement;
   videoPlaying: boolean = false;
@@ -39,7 +38,7 @@ export class VideoPlayerComponent implements OnInit {
   }
 
   setCourseCompleted() {
-    if (this.percentage === 100) {
+    if (this.percentage === 100 && this.ChapterData) {
       this.courseDataService.updateChapterAdvance(
         '68H8A62KBJD5wxOuVeGv',
         this.ChapterData.id,

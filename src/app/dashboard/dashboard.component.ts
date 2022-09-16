@@ -18,8 +18,8 @@ export class DashboardComponent implements OnInit {
   constructor(private courseDataService: CourseDataService) {}
 
   ngOnInit(): void {
-    this.getCurse('68H8A62KBJD5wxOuVeGv');
     this.getCurrentChapter('68H8A62KBJD5wxOuVeGv', this.controlChapter);
+    this.getCurse('68H8A62KBJD5wxOuVeGv');
   }
 
   async getCurse(docId: string) {
@@ -50,7 +50,10 @@ export class DashboardComponent implements OnInit {
   }
 
   setNextChapter() {
-    if (this.controlChapter < this.courseChapters.length) {
+    if (
+      this.controlChapter < this.courseChapters.length &&
+      this.currentChapterData
+    ) {
       if (this.currentChapterData.completed) {
         this.controlChapter++;
       }
