@@ -69,6 +69,13 @@ export class DashboardComponent implements OnInit {
 
   getAdvance(percentage: number) {
     this.percentageAdvance = percentage;
+    if (
+      percentage === 100 &&
+      this.controlChapter < this.courseChapters.length
+    ) {
+      this.controlChapter++;
+      this.getCurrentChapter('68H8A62KBJD5wxOuVeGv', this.controlChapter);
+    }
   }
 
   setChapter(chapter: number) {

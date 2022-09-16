@@ -44,6 +44,8 @@ export class VideoPlayerComponent implements OnInit {
         this.ChapterData.id,
         true
       );
+      this.video.pause();
+      this.videoPlaying = false;
     }
   }
 }

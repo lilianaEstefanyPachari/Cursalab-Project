@@ -1,11 +1,11 @@
 <div class="w-full lg:h-screen flex flex-row bg-[#1a1c24] text-[#acadb1]">
   <app-side-nav
-    class="w-[10%] md:w-[8%] lg:w-[8%] md:border-r-[0.5px] md:border-[#5a5b608a]"
+    class="fixed lg:static w-[10%] md:w-[8%] lg:w-[8%] md:border-r-[0.5px] md:border-[#5a5b608a]"
   ></app-side-nav>
-  <section class="w-[90%] md:w-[91%] sm:flex">
+  <section class="w-[90%] md:w-[91%] lg:flex ml-[10%] lg:ml-0">
     <main class="w-full lg:w-[62%] px-4 lg:px-14 my-4 flex flex-col">
       <section class="h-[5%]">
-        <p class="text-[#acadb1] text-sm md:text-[0.8rem]">
+        <p class="text-[#acadb1] text-[0.75rem] md:text-[0.8rem]">
           Courses/Design/<span class="text-[#e9eaed]">{{ courseTitle }}</span>
         </p>
       </section>
@@ -13,11 +13,11 @@
         <div class="lg:w-[60%]">
           <h1
             *ngIf="currentChapterData"
-            class="text-[#e9eaed] text-xl p-0 m-0 md:mb-3"
+            class="text-[#e9eaed] text-lg sm:text-xl p-0 m-0 md:mb-3"
           >
             {{ currentChapterData.title }}
           </h1>
-          <p class="p-0 m-0 text-sm md:text-[0.8rem]">
+          <p class="p-0 m-0 text-[0.75rem] md:text-[0.8rem]">
             Natalie Storm: Design Department
           </p>
         </div>
@@ -26,7 +26,7 @@
         >
           <p
             *ngIf="courseChapters"
-            class="text-sm lg:text-base lg:mx-2 py-3 text-[#acadb1] md:text-[0.9rem]"
+            class="text-[0.75rem] md:text-[0.8rem] lg:mx-2 py-3 text-[#acadb1]"
           >
             Chapter {{ currentChapterData.chapter }}/{{ courseChapters.length }}
           </p>
@@ -53,15 +53,17 @@
         ></app-video-player>
       </section>
       <section
-        class="w-full h-[30%] flex flex-col lg:flex-row text-sm lg:text-base mt-[-33px]"
+        class="w-full h-[30%] flex flex-col sm:items-start lg:items-center lg:flex-row text-sm lg:text-base mt-[-33px]"
       >
         <div class="w-full lg:w-[62%]">
           <div class="flex justify-between w-2/4">
-            <p class="border-b-2 border-[#ffffff]">Notes</p>
-            <p class="ml-4">Resources</p>
-            <p class="ml-4">Quiz</p>
+            <p class="border-b-2 border-[#ffffff] cursor-pointer">Notes</p>
+            <p class="ml-4 cursor-pointer">Resources</p>
+            <p class="ml-4 cursor-pointer">Quiz</p>
           </div>
-          <div class="w-full pr-6 text-justify sm:text-left md:text-[0.8rem]">
+          <div
+            class="w-full pr-6 text-justify text-[0.75rem] sm:text-left md:text-[0.8rem]"
+          >
             <p>{{ courseInfo }}</p>
           </div>
         </div>
@@ -91,7 +93,7 @@
                 </p>
               </div>
             </div>
-            <p class="md:text-[0.75rem] text-justify">
+            <p class="text-[0.75rem] md:text-[0.75rem] text-justify">
               Natalie is a freelance designer who occassionally dabbles along
               with graphic design.
             </p>

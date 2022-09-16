@@ -10,7 +10,11 @@
         *ngFor="let chapter of totalChaptersData"
       >
         <div
-          *ngIf="!chapter.completed && chapterData.url === chapter.url"
+          *ngIf="
+            !chapter.completed &&
+            chapterData.url === chapter.url &&
+            percentage > 0
+          "
           class="bg-[#45cbb7] h-1"
           [style.width]="percentage + '%'"
         ></div>
